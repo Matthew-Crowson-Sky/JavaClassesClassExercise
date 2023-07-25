@@ -4,8 +4,13 @@ public class Motorbike extends Vehicle{
     private boolean hasSideCar;
 
     public Motorbike(int numOfWheels, int numOfSeats, boolean isManned, boolean hasSideCar) {
-        super(numOfWheels, numOfSeats, isManned, 150);
+        super(numOfWheels, numOfSeats, isManned);
         this.hasSideCar = hasSideCar;
+    }
+
+    @Override
+    public double getRepairPrice(){
+        return 75;
     }
 
     public void ride(){

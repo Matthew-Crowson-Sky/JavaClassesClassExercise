@@ -10,7 +10,7 @@ public class SailBoat extends Vehicle {
     public SailBoat (int numOfWheels, int numOfSeats, boolean isManned,
                     boolean hasRadar, int numOfSails, int minCrewSize,
                     int maxCrewSize, boolean isMoored) {
-        super(numOfWheels, numOfSeats, isManned, 500);
+        super(numOfWheels, numOfSeats, isManned);
 
         // Make sure crew size values make sense
         if (minCrewSize < 0 || maxCrewSize < minCrewSize){
@@ -22,6 +22,11 @@ public class SailBoat extends Vehicle {
         this.minCrewSize = minCrewSize;
         this.maxCrewSize = maxCrewSize;
         this.isMoored = isMoored;
+    }
+
+    @Override
+    public double getRepairPrice() {
+        return maxCrewSize * 20;
     }
 
     public void sail(){

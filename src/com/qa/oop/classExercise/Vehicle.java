@@ -1,20 +1,18 @@
 package com.qa.oop.classExercise;
 
-public abstract class Vehicle {
+public abstract class Vehicle implements Comparable<Vehicle>{
     private int numOfWheels;
     private int numOfSeats;
     private boolean isManned;
     private boolean isOn = false;
     private final int ID;
-    private double repairPrice;
 
     private static int nextID = 0;
 
-    public Vehicle(int numOfWheels, int numOfSeats, boolean isManned, double repairPrice) {
+    public Vehicle(int numOfWheels, int numOfSeats, boolean isManned) {
         this.numOfWheels = numOfWheels;
         this.numOfSeats = numOfSeats;
         this.isManned = isManned;
-        this.repairPrice = repairPrice;
 
         // assign unique ID (Not thread-safe and will overflow)
         this.ID = nextID;
@@ -65,12 +63,11 @@ public abstract class Vehicle {
         return ID;
     }
 
-    public double getRepairPrice() {
-        return repairPrice;
-    }
+    public abstract double getRepairPrice();
 
-    public void setRepairPrice(double repairPrice) {
-        this.repairPrice = repairPrice;
+    @Override
+    public int compareTo(Vehicle other) {
+        return this.getID() - other.getID();
     }
 
     @Override

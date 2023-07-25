@@ -8,10 +8,15 @@ public class Car extends Vehicle {
 
     public Car(int numOfWheels, int numOfSeats, boolean isManned,
                boolean isAutomatic, int bootSpace, int numOfDoors) {
-        super(numOfWheels, numOfSeats, isManned, 300);
+        super(numOfWheels, numOfSeats, isManned);
         this.isAutomatic = isAutomatic;
         this.bootSpace = bootSpace;
         this.numOfDoors = numOfDoors;
+    }
+
+    @Override
+    public double getRepairPrice(){
+        return 150;
     }
 
     public void drive (){

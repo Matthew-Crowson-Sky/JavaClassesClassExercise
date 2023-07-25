@@ -11,15 +11,12 @@ public class Garage {
         this.vehicles = new ArrayList<>(Arrays.asList(vehicles));
     }
 
-    private double repairPrice(Vehicle vehicle){
-        return vehicle.getRepairPrice();
-    }
 
     // Iterates through all vehicles in garage to find total bill
     public double totalRepairPrice(){
         double totalPrice = 0.00;
         for (Vehicle vehicle : this.vehicles) {
-            totalPrice += repairPrice(vehicle);
+            totalPrice += vehicle.getRepairPrice();
         }
         return Math.round(totalPrice * 100.0) / 100.0;
     }
@@ -42,34 +39,28 @@ public class Garage {
     // returns true if vehicle is found and removed
     public boolean removeVehicle(int vehicleID){
 
-        for (int i = 0; i < this.vehicles.size(); i++) {
-            Vehicle vehicle = this.vehicles.get(i);
-
+        for (Vehicle vehicle : new ArrayList<Vehicle>(this.vehicles)){
             if (vehicle.getID() == vehicleID) {
-                this.vehicles.remove(i);
+                this.vehicles.remove(vehicle);
                 return true;
             }
         }
+
         return false;
     }
 
     // remove multiple vehicles by type
-    public int removeVehicles(String vehicleType){
-        vehicleType = vehicleType.toLowerCase();
+    public int removeVehicles(Class  clazz){
+        int vehiclesRemoved = 0;
 
-        for (int i = 0; i < this.vehicles.size(); i++) {
-            Vehicle vehicle = this.vehicles.get(i);
-
-            // get class name for vehicle
-            String vehicleClass = vehicle.getClass().getSimpleName();
-            vehicleClass = vehicleClass.toLowerCase();
-
-            if (vehicleType.equals(vehicleClass)) {
+        for (Vehicle vehicle: new ArrayList<>(this.vehicles)) {
+            if (clazz.getName().equals(vehicle.getClass().getName())) {
                 removeVehicle(vehicle.getID());
+                vehiclesRemoved++;
             }
         }
-        return 0;
 
+        return vehiclesRemoved;
     }
 
     public void emptyGarage(){
