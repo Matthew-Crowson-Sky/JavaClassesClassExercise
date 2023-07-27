@@ -36,17 +36,22 @@ public class Garage {
         return this.vehicles;
     }
 
+    public Vehicle findVehicle(int vehicleID) throws VehicleNotFoundException {
+        for (Vehicle vehicle: this.vehicles){
+            if (vehicle.getID() == vehicleID) return vehicle;
+        }
+        throw new VehicleNotFoundException();
+    }
+
     // returns true if vehicle is found and removed
     public boolean removeVehicle(int vehicleID){
-
-        for (Vehicle vehicle : new ArrayList<Vehicle>(this.vehicles)){
-            if (vehicle.getID() == vehicleID) {
-                this.vehicles.remove(vehicle);
-                return true;
-            }
+        try {
+            Vehicle vehicle = findVehicle(vehicleID);
+            this.vehicles.remove(vehicle);
+            return true;
+        } catch (VehicleNotFoundException e){
+            return false;
         }
-
-        return false;
     }
 
     // remove multiple vehicles by type

@@ -25,7 +25,7 @@ public class Runner {
         Car car2 = new Car(4, 2, true, false, 20, 2);
         g.addVehicle(car2);
 
-        System.out.println("Cars Added to garage:" + g.getVehicles());
+        System.out.println("Vehicles Added to garage:" + g.getVehicles());
 
         // Vehicles are already in order of ID
         // So shuffle before sorting
@@ -46,11 +46,23 @@ public class Runner {
         g.removeVehicles(car.getClass());
         System.out.println("remove all cars: " + g.getVehicles());
 
+        // try out VehicleNotFoundException
+//        try {
+//            g.findVehicle(1);
+//        } catch (VehicleNotFoundException e) {
+//            throw new RuntimeException(e);
+//        }
+
+
         // empty the whole garage
         g.emptyGarage();
         System.out.println("empty garage" + g.getVehicles());
 
+
+
+
         // Test out Flyable interface
+        System.out.println("\n\n");
         Flyable[] flyingThings = new Flyable[4];
         for (int i = 0; i < flyingThings.length; i++) {
             if (i % 2 == 0){
